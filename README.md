@@ -1,2 +1,9 @@
 # node-red-mqttextended
-An extended MQTT node for node-red 
+An extended MQTT node for node-red. Based on the core node for MQTT (https://github.com/node-red/node-red).
+
+Install
+-------
+
+
+Usage
+-----
