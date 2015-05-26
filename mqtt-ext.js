@@ -41,7 +41,7 @@ module.exports = function(RED) {
     var connectionPool = require("./lib/mqttConnectionPool");
     var isUtf8 = require('is-utf8');
 
-    function MQTTBrokerNode(n) {
+    function MQTTExtBrokerNode(n) {
         RED.nodes.createNode(this,n);
         this.broker = n.broker;
         this.port = n.port;
@@ -51,14 +51,14 @@ module.exports = function(RED) {
             this.password = this.credentials.password;
         }
     }
-    RED.nodes.registerType("mqtt-broker-ext",MQTTBrokerNode,{
+    RED.nodes.registerType("mqtt-broker-ext",MQTTExtBrokerNode,{
         credentials: {
             user: {type:"text"},
             password: {type: "password"}
         }
     });
 
-    function MQTTInNode(n) {
+    function MQTTExitInNode(n) {
         RED.nodes.createNode(this,n);
         this.topic = n.topic;
         this.broker = n.broker;
@@ -110,9 +110,9 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("mqtt in ext",MQTTInNode);
+    RED.nodes.registerType("mqtt in ext",MQTTExitInNode);
 
-    function MQTTOutNode(n) {
+    function MQTTExtOutNode(n) {
         RED.nodes.createNode(this,n);
         this.topic = n.topic;
         this.qos = n.qos || null;
@@ -170,5 +170,5 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("mqtt out ext",MQTTOutNode);
+    RED.nodes.registerType("mqtt out ext",MQTTExtOutNode);
 }
