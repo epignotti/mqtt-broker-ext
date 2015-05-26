@@ -53,7 +53,6 @@ module.exports = function (RED) {
         console.log(this);
 
         this.on("input", function (msg) {
-            console.log(msg);
             this.brokerConfig = msg.mqttBrokerConfig;
             this.client = connectionPool.get(this.brokerConfig.broker, this.brokerConfig.port, this.brokerConfig.clientid, this.brokerConfig.username, this.brokerConfig.password);
             this.client.connect();
