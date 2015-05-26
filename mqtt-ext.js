@@ -110,7 +110,7 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("mqtt in ext",MQTTExitInNode);
+    RED.nodes.registerType("mqtt-in-ext",MQTTExitInNode);
 
     function MQTTExtOutNode(n) {
         RED.nodes.createNode(this,n);
@@ -170,5 +170,5 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("mqtt out ext",MQTTExtOutNode);
+    RED.nodes.registerType("mqtt-out-ext",MQTTExtOutNode);
 }
