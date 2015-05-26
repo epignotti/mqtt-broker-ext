@@ -38,7 +38,7 @@
 
 module.exports = function (RED) {
     "use strict";
-    var connectionPool = require("./lib/mqttConnectionPool");
+    var connectionPool = require("/usr/local/lib/node_modules/node-red/nodes/core/io/lib/mqttConnectionPool");
     var isUtf8 = require('is-utf8');
 
 
