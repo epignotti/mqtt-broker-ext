@@ -35,7 +35,7 @@ The modifications made by Nominet UK are released under the following licence:
 
 -->
 
-<script type="text/x-red" data-template-name="mqtt in ext">
+<script type="text/x-red" data-template-name="mqtt-in-ext">
     <div class="form-row">
         <label for="node-input-broker"><i class="fa fa-globe"></i> Broker</label>
         <input type="text" id="node-input-broker">
@@ -50,14 +50,14 @@ The modifications made by Nominet UK are released under the following licence:
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="mqtt in ext">
+<script type="text/x-red" data-help-name="mqtt-in-ext">
     <p>MQTT input node. Connects to a broker and subscribes to the specified topic. The topic may contain MQTT wildcards.</p>
     <p>Outputs an object called <b>msg</b> containing <b>msg.topic, msg.payload, msg.qos</b> and <b>msg.retain</b>.</p>
     <p><b>msg.payload</b> is usually a string, but can also be a binary buffer.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('mqtt in ext',{
+    RED.nodes.registerType('mqtt-in-ext',{
         category: 'input',
         defaults: {
             name: {value:""},
@@ -69,7 +69,7 @@ The modifications made by Nominet UK are released under the following licence:
         outputs:1,
         icon: "bridge.png",
         label: function() {
-            return this.name||this.topic||"mqtt ext";
+            return this.name||this.topic||"mqtt-ext";
         },
         labelStyle: function() {
             return this.name?"node_label_italic":"";
@@ -77,7 +77,7 @@ The modifications made by Nominet UK are released under the following licence:
     });
 </script>
 
-<script type="text/x-red" data-template-name="mqtt out ext">
+<script type="text/x-red" data-template-name="mqtt-out-ext">
     <div class="form-row">
         <label for="node-input-broker"><i class="fa fa-globe"></i> Broker</label>
         <input type="text" id="node-input-broker">
@@ -107,14 +107,14 @@ The modifications made by Nominet UK are released under the following licence:
     <div class="form-tips">Tip: Leave topic, qos or retain blank if you want to set them via msg properties.</div>
 </script>
 
-<script type="text/x-red" data-help-name="mqtt out ext">
+<script type="text/x-red" data-help-name="mqtt-out-ext">
     <p>Connects to a MQTT broker and publishes <b>msg.payload</b> either to the <b>msg.topic</b> or to the topic specified in the edit window. The value in the edit window has precedence.</p>
     <p>Likewise QoS and/or retain values in the edit panel will overwrite any <b>msg.qos</b> and <b>msg.retain</b> properties. If nothing is set they default to <i>0</i> and <i>false</i> respectively.</p>
     <p>If <b>msg.payload</b> contains an object it will be stringified before being sent.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('mqtt out ext',{
+    RED.nodes.registerType('mqtt-out-ext',{
         category: 'output',
         defaults: {
             name: {value:""},
@@ -129,7 +129,7 @@ The modifications made by Nominet UK are released under the following licence:
         icon: "bridge.png",
         align: "right",
         label: function() {
-            return this.name||this.topic||"mqtt ext";
+            return this.name||this.topic||"mqtt-ext";
         },
         labelStyle: function() {
             return this.name?"node_label_italic":"";
