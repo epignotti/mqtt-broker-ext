@@ -11,7 +11,7 @@
   "keywords": [ "node-red", "mqtt" ],
   "node-red"      : {
     "nodes"     : {
-      "dns-query": "mqtt-ext.js"
+      "dns-query": "mqttpublish.js"
     }
   },
   "author": {
