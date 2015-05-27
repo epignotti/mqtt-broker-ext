@@ -2,7 +2,12 @@
   "name"          : "mqtt-broker-ext",
   "version"       : "0.0.1",
   "description"   : "An extended MQTT node for node-red. Based on the core node for MQTT (https://github.com/node-red/node-red).",
-  "dependencies": {},
+  "dependencies": {
+    "mqtt":"*",
+    "is-utf8":"*",
+    "events":"*",
+    "util":"*"
+  },
   "repository" : {
     "type":"git",
     "url":"https://github.com/epignotti/mqtt-broker-ext/tree/master/"
