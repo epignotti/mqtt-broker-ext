@@ -54,30 +54,34 @@ module.exports = function (RED) {
 
         this.on("input", function (msg) {
             this.brokerConfig = msg.mqttBrokerConfig;
-            this.client = connectionPool.get(this.brokerConfig.broker, this.brokerConfig.port, this.brokerConfig.clientid, this.brokerConfig.username, this.brokerConfig.password);
-            this.client.connect();
+
+            if (this.brokerConfig.broker && this.brokerConfig.port && this.brokerConfig.clientid) {
+                this.client = connectionPool.get(this.brokerConfig.broker, this.brokerConfig.port, this.brokerConfig.clientid, this.brokerConfig.username, this.brokerConfig.password);
+                this.client.connect();
 
 
-            if (msg.qos) {
-                msg.qos = parseInt(msg.qos);
-                if ((msg.qos !== 0) && (msg.qos !== 1) && (msg.qos !== 2)) {
-                    msg.qos = null;
+                if (msg.qos) {
+                    msg.qos = parseInt(msg.qos);
+                    if ((msg.qos !== 0) && (msg.qos !== 1) && (msg.qos !== 2)) {
+                        msg.qos = null;
+                    }
+                }
+                msg.qos = Number(node.qos || msg.qos || 0);
+                msg.retain = node.retain || msg.retain || false;
+                msg.retain = ((msg.retain === true) || (msg.retain === "true")) || false;
+                if (node.topic) {
+                    msg.topic = node.topic;
+                }
+                if (msg.hasOwnProperty("payload")) {
+                    if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
+                        this.client.publish(msg);  // send the message
+                    }
+                    else {
+                        node.warn("Invalid topic specified");
+                    }
                 }
             }
-            msg.qos = Number(node.qos || msg.qos || 0);
-            msg.retain = node.retain || msg.retain || false;
-            msg.retain = ((msg.retain === true) || (msg.retain === "true")) || false;
-            if (node.topic) {
-                msg.topic = node.topic;
-            }
-            if (msg.hasOwnProperty("payload")) {
-                if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
-                    this.client.publish(msg);  // send the message
-                }
-                else {
-                    node.warn("Invalid topic specified");
-                }
-            }
+
         });
 
 
